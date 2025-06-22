@@ -1,7 +1,8 @@
-# MadGraph5_aMC@NLO v3.6.3 Dark Matter Sim Full Workflow
+# MadGraph5+MadSpin+Py8+DELPHES 
+## Dark Matter Simulation Full Workflow
 ### Model by Benjamin Fuks: [DMSimpt-GitHub](https://github.com/BFuks/DMSimpt)
 
-This document describes how to set up, run, and analyze MadGraph5_aMC@NLO v3.6.3 in a Conda environment, including showering with Pythia8, MadSpin decays, and a **separate** detector simulation with Delphes (necessary because the built-in detector FAST SIM option is not available for aMC@NLO generation).
+This document describes how to set up and run MG5 v3.6.3, and analyze a DM process in a Conda environment, including showering with Pythia8, MadSpin decays, and a **separate** detector simulation with Delphes (necessary because the built-in detector FAST SIM option is not available for this aMC@NLO generation).
 
 
 ## We are going to run it inside the same conda environment mg5_py39
@@ -23,10 +24,12 @@ export MAKEFLAGS="-j$(nproc)"
 
 # 3. Inside MG5_aMC prompt
 ### Install dependencies
+We won't need `MadSTR` for this, but will do for other processes soon to come by in the tutorial.
 ```bash=
 MG5_aMC> install lhapdf6
 MG5_aMC> install pythia8
 MG5_aMC> install Delphes
+MG5_aMC> install MadSTR
 ```
 
 # 4. Import model & define particles
@@ -46,7 +49,7 @@ MG5_aMC> generate p p > yy2 yy2~ / a z yf3qu1 yf3qu2 yf3qu3 yf3qd1 yf3qd2  \
     xc xc~ xm xd xd~ xv xw xw~ [QCD]
 MG5_aMC> output yy_qcd
 ```
-## At this point, MG5 will ask to install a bunch of tools. Let it install those for loop calculations.
+At this point, MG5 will prompt you to install a bunch of tools. Hit Enter. Let it install those automatically for loop calculations.
 
 # 6. Launch the run
 ```bash=
@@ -57,14 +60,16 @@ Once the prompt to change shower and madspin comes up, type:
 ```bash=
 > shower = PYTHIA8    (Press Enter)
 > madspin = ON        (Press Enter)
-#Press Enter once again and then to edit MadSpin card type in
+#Press Enter once again
+# on being prompted to edit MadSpin card type in
 > 3 
 ``` 
 
 # 7. Edit the MadSpin card 
 
-##    The import model must be at the top to preserve definitions
+##    The `import model` directive must be at the top to preserve definitions
 Replace my username with yours; MS can't resolve $USER
+MadSpin can't identify the model, so we have to force feed the model into it.
 ```bash=
 import model /home/your_username/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/DMSimpt/DMSimpt_v2_0-F3S_cr --bypass_check
 # specify the decay for the final state particles
@@ -81,7 +86,9 @@ launch
 Let that thing cook, bake, whatever.
 
 # 8. Separate Delphes detector simulation 
-### Detector option not available in aMC@NLO
+### Detector option is not available in aMC@NLO for this process
+This needs troubleshooting; but we can do it outside of MG5.
+
 ab refers to run number like 01, 07 etc. Also need to unzip the HEP MC GZ file before running DELPHES fast sim
 ```bash=
 cd /home/$USER/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/Delphes
