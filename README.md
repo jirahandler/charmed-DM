@@ -36,9 +36,9 @@ MG5_aMC> install pythia8_hepmc3
 # 4. Import model & define particles
 ```bash=
 MG5_aMC> import model ./DMSimpt/DMSimpt_v2_0-F3S_cr --modelname
-MG5_aMC> define yy2  = yf3u2
-MG5_aMC> define yy2~ = yf3u2~
-MG5_aMC> define dm   = xs
+MG5_aMC> define yy2=yf3u2
+MG5_aMC> define yy2~=yf3u2~
+MG5_aMC> define dm=xs
 ```
 # 5. Generate the process & output
 ```bash=
