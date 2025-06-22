@@ -30,6 +30,7 @@ MG5_aMC> install lhapdf6
 MG5_aMC> install pythia8
 MG5_aMC> install Delphes
 MG5_aMC> install MadSTR
+MG5_aMC> install pythia8_hepmc3
 ```
 
 # 4. Import model & define particles
