@@ -21,7 +21,8 @@ export MAKEFLAGS="-j$(nproc)"
 ./bin/MG5_aMC
 ```
 
-# 3. Inside MG5_aMC prompt: install dependencies
+# 3. Inside MG5_aMC prompt
+### Install dependencies
 ```bash=
 MG5_aMC> install lhapdf6
 MG5_aMC> install pythia8
@@ -60,9 +61,10 @@ Once the prompt to change shower and madspin comes up, type:
 > 3 
 ``` 
 
-# 7. Edit the MadSpin card (replace my username with yours; MS can't resolve $USER)
-##    The import model must be at the top to preserve definitions
+# 7. Edit the MadSpin card 
 
+##    The import model must be at the top to preserve definitions
+Replace my username with yours; MS can't resolve $USER
 ```bash=
 import model /home/your_username/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/DMSimpt/DMSimpt_v2_0-F3S_cr --bypass_check
 # specify the decay for the final state particles
@@ -78,10 +80,12 @@ launch
 ```
 Let that thing cook, bake, whatever.
 
-# 8. Separate Delphes detector simulation (detector option not available in aMC@NLO)
+# 8. Separate Delphes detector simulation 
+### Detector option not available in aMC@NLO
+ab refers to run number like 01, 07 etc. Also need to unzip the HEP MC GZ file before running DELPHES fast sim
 ```bash=
 cd /home/$USER/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/Delphes
-gunzip /home/$USER/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/yy_qcd/Events/run_xy_decayed_1/events_PYTHIA8_0.hepmc.gz
+gunzip /home/$USER/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/yy_qcd/Events/run_ab_decayed_1/events_PYTHIA8_0.hepmc.gz
 # Have to use HEPMC2 because HEPMC3 gives "Invalid Vertex Format"
 ./DelphesHepMC2 cards/delphes_card_ATLAS.tcl delphes.root /home/$USER/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/yy_qcd/Events/run_xy_decayed_1/events_PYTHIA8_0.hepmc
 ```
