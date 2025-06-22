@@ -26,11 +26,9 @@ export MAKEFLAGS="-j$(nproc)"
 ### Install dependencies
 We won't need `MadSTR` for this, but will do for other processes soon to come by in the tutorial.
 ```bash=
-MG5_aMC> install lhapdf6
-MG5_aMC> install pythia8
-MG5_aMC> install Delphes
 MG5_aMC> install MadSTR
 MG5_aMC> install pythia8_hepmc3
+MG5_aMC> install Delphes
 ```
 
 # 4. Import model & define particles
