@@ -58,11 +58,17 @@ MG5_aMC> launch yy_qcd
 
 Once the prompt to change shower and madspin comes up, type:
 ```bash=
-> shower = PYTHIA8    (Press Enter)
-> madspin = ON        (Press Enter)
+> shower=PYTHIA8    (Press Enter)
+> madspin=ON        (Press Enter)
 #Press Enter once again
 # on being prompted to edit MadSpin card type in
-> 3 
+> 3
+```
+and then 
+
+```vim=
+vim> Delete existing content using ESC :1,%d Enter
+vim> Paste the MadSpin Card below without redundancy; save and exit (ESC :wq)
 ``` 
 
 # 7. Edit the MadSpin card 
