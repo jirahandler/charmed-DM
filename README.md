@@ -78,6 +78,7 @@ vim> Paste the MadSpin Card below without redundancy; save and exit (ESC :wq)
 Replace my username with yours; MS can't resolve $USER
 MadSpin can't identify the model, so we have to force feed the model into it.
 ```bash=
+set max_weight_ps_point 400
 import model /home/your_username/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/DMSimpt/DMSimpt_v2_0-F3S_cr --bypass_check
 # specify the decay for the final state particles
 decay t    > w+  b, w+  > all all
