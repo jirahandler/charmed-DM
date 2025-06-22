@@ -19,7 +19,7 @@ git clone https://github.com/BFuks/DMSimpt
 ```bash=
 conda activate mg5_py39
 export MAKEFLAGS="-j$(nproc)"
-./bin/MG5_aMC
+./bin/mg5_aMC
 ```
 
 # 3. Inside MG5_aMC prompt
