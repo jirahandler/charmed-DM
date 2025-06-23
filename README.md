@@ -5,8 +5,9 @@
 This document describes how to set up and run MG5 v3.6.3, and analyze a DM process in a Conda environment, including showering with Pythia8, MadSpin decays, and a **separate** detector simulation with Delphes (necessary because the built-in detector FAST SIM option is not available for this aMC@NLO generation).
 
 
-## We are going to run it inside the same conda environment mg5_py39
-### MG Version used is also the same: 3_6_3
+## We are going to run it **outside** of the conda environment mg5_py39
+## We will be using system python `/usr/bin/python3`
+### However, MG Version used is also the same: 3_6_3
 
 # 1. Download & extract MG5_aMC v3.6.3
 ```bash=
@@ -17,7 +18,13 @@ git clone https://github.com/BFuks/DMSimpt
 ```
 # 2. Activate environment & launch MadGraph5_aMC@NLO
 ```bash=
-conda activate mg5_py39
+#If conda mg5_py39 is activated, do
+conda deactivate
+#If conda base is activated, do
+conda deactivate
+#To check that system python is being used, do
+which python3
+# Make sure it's /usr/bin/python3
 export MAKEFLAGS="-j$(nproc)"
 ./bin/mg5_aMC
 ```
@@ -26,10 +33,21 @@ export MAKEFLAGS="-j$(nproc)"
 ### Install dependencies
 We won't need `MadSTR` for this, but will do for other processes soon to come by in the tutorial.
 ```bash=
+MG5_aMC> install zlib
 MG5_aMC> install MadSTR
-MG5_aMC> install pythia8_hepmc3
+MG5_aMC> install hepmc
+MG5_aMC> install lhapdf6
+MG5_aMC> install pythia8
 MG5_aMC> install Delphes
+MG5_aMC> install oneloop
+MG5_aMC> install collier
+
 ```
+The allowed MG5 direct install stuffs are
+```bash=
+Delphes|MadAnalysis4|ExRootAnalysis|update|Golem95|QCDLoop|maddm|maddump|looptools|MadSTR|RunningCoupling|pythia8|zlib|boost|lhapdf6|lhapdf5|collier|hepmc|mg5amc_py8_interface|ninja|oneloop|MadAnalysis5|yoda|rivet|fastjet|fjcontrib|contur|cmake|eMELA|cudacpp|hepmc3|pythia8_hepmc3
+```
+
 
 # 4. Import model & define particles
 ```bash=
@@ -48,7 +66,14 @@ MG5_aMC> generate p p > yy2 yy2~ / a z yf3qu1 yf3qu2 yf3qu3 yf3qd1 yf3qd2  \
     xc xc~ xm xd xd~ xv xw xw~ [QCD]
 MG5_aMC> output yy_qcd
 ```
-At this point, MG5 will prompt you to install a bunch of tools. Hit Enter. Let it install those automatically for loop calculations.
+At this point, MG5 will prompt you to install a bunch of tools. 
+
+Type in `ninja noinstall` because ninja is a pain in the a** to install
+
+Hit Enter. 
+
+Let it install those automatically for loop calculations.
+
 
 # 6. Launch the run
 ```bash=
