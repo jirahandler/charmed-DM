@@ -5,9 +5,11 @@
 This document describes how to set up and run MG5 v3.6.3, and analyze a DM process in a Conda environment, including showering with Pythia8, MadSpin decays, and a **separate** detector simulation with Delphes (necessary because the built-in detector FAST SIM option is not available for this aMC@NLO generation).
 
 
-## We are going to run it **outside** of the conda environment mg5_py39
-## We will be using system python `/usr/bin/python3`
-### However, MG Version used is also the same: 3_6_3
+We are going to run it **outside** of the conda environment `mg5_py39`
+
+Hence, we will be using the system python `/usr/bin/python3`
+
+### MG Version used is: 3.6.3
 
 # 1. Download & extract MG5_aMC v3.6.3
 ```bash=
@@ -72,7 +74,7 @@ Type in `ninja noinstall` because ninja is a pain in the a** to install
 
 Hit Enter. 
 
-Let it install those automatically for loop calculations.
+Let it install the rest automatically for loop calculations.
 
 
 # 6. Launch the run
@@ -129,7 +131,7 @@ gunzip /home/$USER/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/yy_qcd/Events/r
 ```
 
 # 9. Analyze "delphes.root" using Python scripts
-The following Python scripts need `mg5_py39` conda env to run.
+The following Python scripts need `mg5_py39` conda env to run.This environment needs to be built on `python 3.9.x where x>=7`
 
 ```bash=
 cd /home/$USER/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/Delphes/
