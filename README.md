@@ -129,8 +129,11 @@ gunzip /home/$USER/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/yy_qcd/Events/r
 ```
 
 # 9. Analyze "delphes.root" using Python scripts
+The following Python scripts need `mg5_py39` conda env to run.
+
 ```bash=
 cd /home/$USER/mg5-tutorial/madgraph_tutorial/MG5_aMC_v3_6_3/Delphes/
+conda activate mg5_py39
 ```
 ## Prepare a script `analysis.py` or open a Jupyter  to run the cell(s) below
 ```python=
